@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transformar SWF em JS</title>
+    <script src="lib/swf2js.js"></script>
+</head>
+<body>
+    <h1>Carregar e Exibir Arquivo SWF</h1>
+    <p>Escolha um arquivo SWF para emular:</p>
+    <input type="file" id="file-input" accept=".swf" />
+    <div id="swf-container"></div>
+
+    <script>
+        document.getElementById('file-input').addEventListener('change', function(event) {
+            // Obter o arquivo selecionado
+            const file = event.target.files[0];
+
+            // Verificar se o arquivo foi selecionado e se é um arquivo SWF
+            if (file && file.name.endsWith('.swf')) {
+                // Limpar o conteúdo do contêiner antes de carregar um novo SWF
+                const container = document.getElementById("swf-container");
+                container.innerHTML = ''; // Limpar o conteúdo existente
+
+                // Criar um objeto URL para o arquivo selecionado
+                const swfPath = URL.createObjectURL(file);
+
+                // Configuração do swf2js para carregar o arquivo SWF
+                swf2js.load(swfPath, {
+                    id: "swf-container",   // O ID do elemento onde o SWF será exibido
+                    width: 800,
+                    height: 600,
+                });
+            } else {
+                alert("Por favor, selecione um arquivo SWF.");
+            }
+        });
+    </script>
+</body>
+</html>
+
