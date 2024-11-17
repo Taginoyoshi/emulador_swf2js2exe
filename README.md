@@ -1,0 +1,1 @@
+# emulador_swf2js2exe
